@@ -4,6 +4,7 @@ body {
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
     background-color: grey;
+    padding-left: 10%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -28,5 +29,12 @@ h1 {
 input {
     margin-left: 20px;
     width: 60%;
+}
+
+.movie-list {
+    background-color: white;
+    width: 40%;
+    margin-top: 15px;
+    text-align: center;
 }
 
