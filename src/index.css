@@ -33,9 +33,17 @@ input {
 
 .movie-list {
     background-color: white;
-    width: 40%;
+    width: 50%;
     margin-top: 15px;
     padding: 5px;
+}
+
+.movie-card {
+    clear: both;
+}
+
+.nominate-button {
+    float: right;
 }
 
 
