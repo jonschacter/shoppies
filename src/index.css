@@ -57,4 +57,13 @@ input {
     clear: both;
 }
 
+.banner {
+    background-color: red;
+    color: white;
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+}
+
 
