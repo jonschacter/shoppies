@@ -17,3 +17,16 @@ h1 {
     text-align: center;
 }
 
+.movie-search-form {
+    margin: auto;
+    background-color: white;
+    width: 60%;
+    text-align: center;
+    padding: 20px;
+}
+
+input {
+    margin-left: 20px;
+    width: 60%;
+}
+
