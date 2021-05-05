@@ -70,8 +70,8 @@ class Shoppies extends Component {
                         <input type="text" onChange={this.handleChange} name="search-title" value={this.state.query} />
                     </form>
                 </div>
-                <MovieList movies={this.state.movies} addNominate={this.addNominate} />
-                <NomineeList movies={this.state.nominations} removeNominate={this.removeNominate} />
+                { this.state.movies.length > 0 ? <MovieList movies={this.state.movies} addNominate={this.addNominate} query={this.state.query} /> : null }
+                { this.state.nominations.length > 0 ? <NomineeList movies={this.state.nominations} removeNominate={this.removeNominate} /> : null }
             </div>
         );
     }
