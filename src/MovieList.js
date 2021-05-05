@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class MovieList extends Component {
-    render() {
-        return (
-            <div className="movie-list">
-                HELLO
-            </div>
-        );
-    }
+function MovieList({ movies }) {
+    return (
+        <div className="movie-list">
+            { movies.map(movie => {
+                console.log(movie)
+            }) }
+        </div>
+    );
 }
 
 export default MovieList;
