@@ -9,10 +9,30 @@ class Shoppies extends Component {
         }
     }
     
+    handleSubmit = (e) => {
+        e.preventDefault()
+    }
+
     handleChange = (e) => {
+        const query = e.target.value
+        
         this.setState({
-            query: e.target.value
+            query
         })
+
+        this.getMovies(query)
+    }
+
+    getMovies = (query) => {
+        fetch(`http://omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${query}`)
+            .then(resp => resp.json())
+            .then(data => {
+                if (data.Response === "True") {
+                    this.setState({
+                        movies: data.Search
+                    })
+                }
+            })
     }
 
     render() {
@@ -20,7 +40,7 @@ class Shoppies extends Component {
             <div className="App">
                 <h1>The Shoppies</h1>
                 <div className="movie-search-form">
-                    <form>
+                    <form onSubmit={this.handleSubmit} >
                         <label>Movie Title:</label>
                         <input type="text" onChange={this.handleChange} name="search-title" value={this.state.query} />
                     </form>
