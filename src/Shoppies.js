@@ -14,6 +14,8 @@ class Shoppies extends Component {
     
     handleSubmit = (e) => {
         e.preventDefault()
+        
+        this.getMovies(this.state.query)
     }
 
     handleChange = (e) => {
