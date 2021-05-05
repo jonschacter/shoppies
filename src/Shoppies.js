@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MovieList from './MovieList'
 
 class Shoppies extends Component {
     constructor(props) {
@@ -45,6 +46,7 @@ class Shoppies extends Component {
                         <input type="text" onChange={this.handleChange} name="search-title" value={this.state.query} />
                     </form>
                 </div>
+                <MovieList movies={this.state.movies} />
             </div>
         );
     }
