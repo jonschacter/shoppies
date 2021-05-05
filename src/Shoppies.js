@@ -32,6 +32,10 @@ class Shoppies extends Component {
                     this.setState({
                         movies: data.Search
                     })
+                } else {
+                    this.setState({
+                        movies: []
+                    })
                 }
             })
     }
