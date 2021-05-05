@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovieList from './MovieList'
+import NomineeList from './NomineeList'
 
 class Shoppies extends Component {
     constructor(props) {
@@ -60,6 +61,7 @@ class Shoppies extends Component {
                     </form>
                 </div>
                 <MovieList movies={this.state.movies} addNominate={this.addNominate} />
+                <NomineeList movies={this.state.nominations} />
             </div>
         );
     }

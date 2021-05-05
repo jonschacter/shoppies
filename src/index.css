@@ -46,5 +46,15 @@ input {
     float: right;
 }
 
+.nominee-list {
+    background-color: white;
+    width: 50%;
+    margin-top: 15px;
+    padding: 5px;
+}
+
+.nominee-card {
+    clear: both;
+}
 
 
