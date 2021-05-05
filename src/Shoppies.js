@@ -6,7 +6,8 @@ class Shoppies extends Component {
         super(props)
         this.state = {
             query: "",
-            movies: []
+            movies: [],
+            nominations: []
         }
     }
     
@@ -22,6 +23,14 @@ class Shoppies extends Component {
         })
 
         this.getMovies(query)
+    }
+
+    addNominate = (movie) => {
+        this.setState(prevState => {
+            return {
+                nominations: [...prevState.nominations, movie]
+            }
+        })
     }
 
     getMovies = (query) => {
@@ -50,7 +59,7 @@ class Shoppies extends Component {
                         <input type="text" onChange={this.handleChange} name="search-title" value={this.state.query} />
                     </form>
                 </div>
-                <MovieList movies={this.state.movies} />
+                <MovieList movies={this.state.movies} addNominate={this.addNominate} />
             </div>
         );
     }
