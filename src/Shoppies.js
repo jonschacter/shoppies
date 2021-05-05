@@ -34,6 +34,16 @@ class Shoppies extends Component {
         })
     }
 
+    removeNominate = (movie) => {
+        this.setState(prevState => {
+            const index = prevState.nominations.findIndex(nom => nom.imdbID === movie.imdbID)
+
+            return {
+                nominations: [...prevState.nominations.slice(0, index), ...prevState.nominations.slice(index+1)]
+            }
+        })
+    }
+
     getMovies = (query) => {
         fetch(`http://omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${query}`)
             .then(resp => resp.json())
@@ -61,7 +71,7 @@ class Shoppies extends Component {
                     </form>
                 </div>
                 <MovieList movies={this.state.movies} addNominate={this.addNominate} />
-                <NomineeList movies={this.state.nominations} />
+                <NomineeList movies={this.state.nominations} removeNominate={this.removeNominate} />
             </div>
         );
     }
