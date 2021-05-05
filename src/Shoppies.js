@@ -28,8 +28,9 @@ class Shoppies extends Component {
 
     addNominate = (movie) => {
         this.setState(prevState => {
+            const newNominations = [...prevState.nominations, movie]
             return {
-                nominations: [...prevState.nominations, movie]
+                nominations: newNominations
             }
         })
     }
@@ -37,9 +38,9 @@ class Shoppies extends Component {
     removeNominate = (movie) => {
         this.setState(prevState => {
             const index = prevState.nominations.findIndex(nom => nom.imdbID === movie.imdbID)
-
+            const newNominations = [...prevState.nominations.slice(0, index), ...prevState.nominations.slice(index+1)]
             return {
-                nominations: [...prevState.nominations.slice(0, index), ...prevState.nominations.slice(index+1)]
+                nominations: newNominations
             }
         })
     }
@@ -70,7 +71,7 @@ class Shoppies extends Component {
                         <input type="text" onChange={this.handleChange} name="search-title" value={this.state.query} />
                     </form>
                 </div>
-                { this.state.movies.length > 0 ? <MovieList movies={this.state.movies} addNominate={this.addNominate} query={this.state.query} /> : null }
+                { this.state.movies.length > 0 ? <MovieList movies={this.state.movies} nominees={this.state.nominations} addNominate={this.addNominate} query={this.state.query} /> : null }
                 { this.state.nominations.length > 0 ? <NomineeList movies={this.state.nominations} removeNominate={this.removeNominate} /> : null }
             </div>
         );

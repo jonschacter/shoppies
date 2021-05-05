@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 
 class MovieCard extends Component {  
-    constructor(props){
-        super(props)
+    renderButton = () => {
+        const { movie, nominees } = this.props
 
-        this.state = {
-            button: true
+        let displayButton = true
+
+        if (nominees.length > 4) {
+            displayButton = false
+        } else {
+            for(let i = 0; i < nominees.length; i++) {
+                if (nominees[i].imdbID == movie.imdbID) {
+                    displayButton = false
+                    break
+                }
+            }
         }
+
+        return <button className="nominate-button" disabled={!displayButton} onClick={this.handleClick}>Nominate</button>
     }
 
     handleClick = () => {
@@ -18,7 +29,7 @@ class MovieCard extends Component {
         return (
             <div className="movie-card">
                { Title } ({ Year })
-               <button className="nominate-button" disabled={!this.state.button} onClick={this.handleClick}>Nominate</button>
+               { this.renderButton() }
             </div>
         );
     }
