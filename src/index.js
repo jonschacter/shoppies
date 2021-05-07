@@ -5,12 +5,12 @@ import store from './store.js'
 
 import './index.css';
 
-import Shoppies from './Shoppies';
+import App from './App';
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <Shoppies />
+    <App />
   </Provider>,
   document.getElementById('root')
 );
