@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
+import { addNominee } from '../../actions/nominees.js'
 
 class MovieCard extends Component {  
     renderButton = () => {
@@ -10,7 +13,7 @@ class MovieCard extends Component {
             displayButton = false
         } else {
             for(let i = 0; i < nominees.length; i++) {
-                if (nominees[i].imdbID == movie.imdbID) {
+                if (nominees[i].imdbID === movie.imdbID) {
                     displayButton = false
                     break
                 }
@@ -21,7 +24,9 @@ class MovieCard extends Component {
     }
 
     handleClick = () => {
-        this.props.addNominate(this.props.movie)
+        const { movie, addNominee } = this.props
+
+        addNominee(movie)
     }
     
     render() {
@@ -35,4 +40,10 @@ class MovieCard extends Component {
     }
 }
 
-export default MovieCard;
+const mapStateToProps = ({ nominees }) => {
+    return {
+        nominees
+    }
+}
+
+export default connect(mapStateToProps, { addNominee })(MovieCard);

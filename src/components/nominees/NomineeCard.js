@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
+import { removeNominee } from '../../actions/nominees.js'
 
 class NomineeCard extends Component {  
     handleClick = () => {
-        this.props.removeNominate(this.props.movie)
+        this.props.removeNominee(this.props.movie.imdbID)
     }
     
     render() {
@@ -16,4 +19,4 @@ class NomineeCard extends Component {
     }
 }
 
-export default NomineeCard;
+export default connect(null, { removeNominee })(NomineeCard);
