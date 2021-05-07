@@ -37,3 +37,9 @@ export const login = (userInfo) => {
         console.log(userInfo)
     }
 }
+
+export const logout = (history) => {
+    return dispatch => {
+        console.log("logging out")
+    }
+}
