@@ -96,3 +96,23 @@ input {
     text-align: center;
 }
 
+.navbar {
+    text-align: right;
+    margin-right: 10%;
+}
+
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: lightgrey;
+}
+
+a:active{
+    color: white;
+}
