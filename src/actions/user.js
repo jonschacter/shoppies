@@ -56,3 +56,22 @@ export const logout = (history) => {
             .catch(error => alert(error))
     }
 }
+
+export const getCurrentUser = () => {
+    return dispatch => {
+        return fetch(`${API_ROOT}/current_user`, {
+            credentials: "include",
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(resp => resp.json())
+            .then(data => {
+                if (!data.error) {
+                    dispatch(setCurrentUser(data))
+                }
+            })
+            .catch(error => alert(error))
+    }
+}
