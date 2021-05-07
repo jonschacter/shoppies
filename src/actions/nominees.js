@@ -14,6 +14,12 @@ export const removeNominee = (movieId) => {
     }
 }
 
+export const clearNominees = () => {
+    return {
+        type: "CLEAR_NOMINEES"
+    }
+}
+
 export const getNomineeData = (imdbID) => {
     return dispatch => {
         fetch(`http://omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=${imdbID}`)

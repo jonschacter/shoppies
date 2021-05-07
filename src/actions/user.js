@@ -1,6 +1,6 @@
 import API_ROOT from '../apiRoot.js'
 
-import { getNominees } from './nominees.js'
+import { getNominees, clearNominees } from './nominees.js'
 
 export const setCurrentUser = user => {
     return {
@@ -34,6 +34,7 @@ export const signup = (userInfo, history) => {
                     alert(data.error)
                 } else {
                     dispatch(setCurrentUser(data))
+                    dispatch(clearNominees())
                     history.push("/")
                 }
             })
@@ -57,6 +58,7 @@ export const login = (userInfo, history) => {
                     alert(data.error)
                 } else {
                     dispatch(setCurrentUser(data))
+                    dispatch(clearNominees())
                     dispatch(getNominees())
                     history.push("/")
                 }
@@ -72,7 +74,10 @@ export const logout = (history) => {
             credentials: "include",
             method: "DELETE"
         })
-            .then(history.push("/"))
+            .then(() => {
+                dispatch(clearNominees())
+                history.push("/")
+            })
             .catch(error => alert(error))
     }
 }
@@ -90,6 +95,7 @@ export const getCurrentUser = () => {
             .then(data => {
                 if (!data.error) {
                     dispatch(setCurrentUser(data))
+                    dispatch(clearNominees())
                     dispatch(getNominees())
                 }
             })
