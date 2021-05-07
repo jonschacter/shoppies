@@ -77,3 +77,28 @@ export const createNominee = (movie, user) => {
     }
 }
 
+export const deleteNominee = (imdbID) => {
+    return dispatch => {
+        return fetch(`${API_ROOT}/nominees`, {
+            credentials: "include",
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                imdbID
+            })
+        })
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data)
+                if (data.error) {
+                    alert(data.error)
+                } else {
+                    dispatch(removeNominee(imdbID))
+                }
+            })
+            .catch(error => alert(error))
+    }
+}
+

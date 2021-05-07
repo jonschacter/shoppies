@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { removeNominee } from '../../actions/nominees.js'
+import { removeNominee, deleteNominee } from '../../actions/nominees.js'
 
 class NomineeCard extends Component {  
     handleClick = () => {
-        this.props.removeNominee(this.props.movie.imdbID)
+        const { removeNominee, deleteNominee, movie, loggedIn } = this.props
+        
+        // this.props.removeNominee(this.props.movie.imdbID)
+
+        if (loggedIn) {
+            deleteNominee(movie.imdbID)
+        } else {
+            removeNominee(movie.imdbID)
+        }
     }
     
     render() {
@@ -19,4 +27,10 @@ class NomineeCard extends Component {
     }
 }
 
-export default connect(null, { removeNominee })(NomineeCard);
+const mapStateToProps = ({ user }) => {
+    return {
+        loggedIn: !!user
+    }
+}
+
+export default connect(mapStateToProps, { removeNominee, deleteNominee })(NomineeCard);
