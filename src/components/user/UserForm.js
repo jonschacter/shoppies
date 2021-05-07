@@ -23,10 +23,10 @@ class UserForm extends Component {
         
         if (this.props.type === "Log In") {
             console.log("logging in")
-            this.props.login(this.state)
+            this.props.login(this.state, this.props.history)
         } else {
             console.log("signing up")
-            this.props.signup(this.state)
+            this.props.signup(this.state, this.props.history)
         }
     }
 

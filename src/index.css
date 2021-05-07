@@ -73,16 +73,16 @@ input {
     margin: auto;
 }
 
-label, input {
+.user-form label, input {
     display: inline-block;
 }
 
-label {
+.user-form label {
     width: 30%;
     text-align: right;
 }
 
-label+input {
+.user-form label+input {
     width: 30%;
     margin: 0 30% 0 4%;
 }

@@ -72,8 +72,8 @@ class Shoppies extends Component {
                 { nominees.length === 5 ? <div className="banner"><h3>Thank You for Contributing Your Nominations!!</h3></div> : null}
                 <div className="movie-search-form">
                     <form onSubmit={this.handleSubmit} >
-                        <label>Movie Title:</label>
-                        <input type="text" onChange={this.handleChange} name="search-title" value={this.state.query} />
+                        <label className="movie-label">Movie Title:</label>
+                        <input className="movie-input" type="text" onChange={this.handleChange} name="search-title" value={this.state.query} />
                     </form>
                 </div>
                 { movies.length > 0 ? <MovieList movies={movies} query={this.state.query} /> : null }
