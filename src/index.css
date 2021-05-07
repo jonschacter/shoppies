@@ -66,4 +66,11 @@ input {
     padding: 10px;
 }
 
+.user-form {
+    background-color: white;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+}
+
 
