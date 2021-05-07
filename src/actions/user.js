@@ -1,5 +1,7 @@
 import API_ROOT from '../apiRoot.js'
 
+import { getNominees } from './nominees.js'
+
 export const setCurrentUser = user => {
     return {
         type: "SET_CURRENT_USER",
@@ -55,6 +57,7 @@ export const login = (userInfo, history) => {
                     alert(data.error)
                 } else {
                     dispatch(setCurrentUser(data))
+                    dispatch(getNominees())
                     history.push("/")
                 }
             })
@@ -87,6 +90,7 @@ export const getCurrentUser = () => {
             .then(data => {
                 if (!data.error) {
                     dispatch(setCurrentUser(data))
+                    dispatch(getNominees())
                 }
             })
             .catch(error => alert(error))

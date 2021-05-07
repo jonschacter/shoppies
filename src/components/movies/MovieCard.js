@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import { addNominee } from '../../actions/nominees.js'
+import { addNominee, createNominee } from '../../actions/nominees.js'
 
 class MovieCard extends Component {  
     renderButton = () => {
@@ -24,9 +24,13 @@ class MovieCard extends Component {
     }
 
     handleClick = () => {
-        const { movie, addNominee } = this.props
+        const { movie, addNominee, createNominee, user } = this.props
 
-        addNominee(movie)
+        if (user) {
+            createNominee(movie, user)
+        } else {
+            addNominee(movie)
+        }
     }
     
     render() {
@@ -40,10 +44,11 @@ class MovieCard extends Component {
     }
 }
 
-const mapStateToProps = ({ nominees }) => {
+const mapStateToProps = ({ nominees, user }) => {
     return {
-        nominees
+        nominees,
+        user
     }
 }
 
-export default connect(mapStateToProps, { addNominee })(MovieCard);
+export default connect(mapStateToProps, { addNominee, createNominee })(MovieCard);
