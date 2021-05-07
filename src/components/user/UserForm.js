@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+import { signup, login } from '../../actions/user.js'
+
 class UserForm extends Component {
     constructor(props){
         super(props)
@@ -18,7 +20,14 @@ class UserForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        console.log("submit")
+        
+        if (this.props.type === "Log In") {
+            console.log("logging in")
+            this.props.login(this.state)
+        } else {
+            console.log("signing up")
+            this.props.signup(this.state)
+        }
     }
 
     render() {
@@ -39,4 +48,4 @@ class UserForm extends Component {
     }
 }
 
-export default connect()(UserForm);
+export default connect(null, { login, signup })(UserForm);
