@@ -73,4 +73,26 @@ input {
     margin: auto;
 }
 
+label, input {
+    display: inline-block;
+}
+
+label {
+    width: 30%;
+    text-align: right;
+}
+
+label+input {
+    width: 30%;
+    margin: 0 30% 0 4%;
+}
+
+.submit {
+    width: 20%;
+    margin-left: 40%;
+}
+
+.form-title {
+    text-align: center;
+}
 
