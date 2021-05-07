@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getMovies } from './actions/movies.js'
 import MovieList from './components/movies/MovieList'
 import NomineeList from './components/nominees/NomineeList'
+import Navbar from './components/Navbar.js'
 
 class Shoppies extends Component {
     constructor(props) {
@@ -69,6 +70,7 @@ class Shoppies extends Component {
 
         return (
             <div className="App">
+                <Navbar />
                 <h1>The Shoppies</h1>
                 { nominees.length === 5 ? <div className="banner"><h3>Thank You for Contributing Your Nominations!!</h3></div> : null}
                 <div className="movie-search-form">
