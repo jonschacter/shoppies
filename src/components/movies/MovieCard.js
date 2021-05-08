@@ -1,12 +1,15 @@
+// libraries
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+// actions
 import { addNominee, createNominee } from '../../actions/nominees.js'
 
 class MovieCard extends Component {  
     renderButton = () => {
         const { movie, nominees } = this.props
 
+        // disable button at 5 nominees or if already nominated
         let displayButton = true
 
         if (nominees.length > 4) {
@@ -26,6 +29,8 @@ class MovieCard extends Component {
     handleClick = () => {
         const { movie, addNominee, createNominee, user } = this.props
 
+        // addNominee only interacts with store for when a user is NOT logged in
+        // createNominee will communicate with backend first
         if (user) {
             createNominee(movie, user)
         } else {

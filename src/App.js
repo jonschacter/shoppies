@@ -1,9 +1,12 @@
+// libraries
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
+// actions
 import { getCurrentUser } from './actions/user.js'
 
+// components
 import Navbar from './components/Navbar.js'
 import Shoppies from './Shoppies.js'
 import UserForm from './components/user/UserForm.js'

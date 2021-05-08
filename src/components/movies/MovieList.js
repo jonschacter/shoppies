@@ -1,4 +1,7 @@
+// libraries
 import React from 'react';
+
+// components
 import MovieCard from './MovieCard.js'
 
 function MovieList({ query, movies }) {

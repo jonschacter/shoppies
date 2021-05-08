@@ -1,14 +1,16 @@
+// libraries
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+// actions
 import { removeNominee, deleteNominee } from '../../actions/nominees.js'
 
 class NomineeCard extends Component {  
     handleClick = () => {
         const { removeNominee, deleteNominee, movie, loggedIn } = this.props
-        
-        // this.props.removeNominee(this.props.movie.imdbID)
 
+        // removeNominee only interacts with store for when a user is NOT logged in
+        // deleteNominee will communicate with backend first
         if (loggedIn) {
             deleteNominee(movie.imdbID)
         } else {

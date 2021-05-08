@@ -1,10 +1,14 @@
+// libraries
 import React from 'react';
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 
+// actions
 import { logout } from '../actions/user.js'
 
 const Navbar = ({ loggedIn, logout, history }) => {
+    // if logged in => Home | Log Out
+    // else => Home | Log In | Sign Up
     return (
         <div className="navbar">
             <Link to="/">Home</Link>

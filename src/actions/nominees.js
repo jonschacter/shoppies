@@ -1,5 +1,8 @@
-import API_ROOT from '../apiRoot.js'
+// base urls
+import { BACKEND_API_ROOT, OMDB_API_ROOT } from '../apiRoot.js'
 
+
+// add single nominee to store
 export const addNominee = (movie) => {
     return {
         type: "ADD_NOMINEE",
@@ -7,6 +10,7 @@ export const addNominee = (movie) => {
     }
 }
 
+// remove single nominee from store
 export const removeNominee = (movieId) => {
     return {
         type: "REMOVE_NOMINEE",
@@ -14,15 +18,17 @@ export const removeNominee = (movieId) => {
     }
 }
 
+// reset nominees to empty
 export const clearNominees = () => {
     return {
         type: "CLEAR_NOMINEES"
     }
 }
 
+// fetch single movie data from OMDB using IMDB id
 export const getNomineeData = (imdbID) => {
     return dispatch => {
-        fetch(`http://omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&i=${imdbID}`)
+        fetch(`${OMDB_API_ROOT}&i=${imdbID}`)
             .then(resp => resp.json())
             .then(data => {
                 console.log(data)
@@ -35,9 +41,10 @@ export const getNomineeData = (imdbID) => {
     }
 }
 
+// fetch users existing nominees from backend
 export const getNominees = () => {
     return dispatch => {
-        return fetch(`${API_ROOT}/nominees`, {
+        return fetch(`${BACKEND_API_ROOT}/nominees`, {
             credentials: "include",
             method: "GET",
             headers: {
@@ -46,7 +53,6 @@ export const getNominees = () => {
         })
             .then(resp => resp.json())
             .then(data => {
-                console.log(data)
                 if (!data.error) {
                     for(let i in data){
                         dispatch(getNomineeData(data[i].imdbID))
@@ -57,9 +63,10 @@ export const getNominees = () => {
     }
 }
 
+// add nominee to backend user data
 export const createNominee = (movie, user) => {
     return dispatch => {
-        return fetch(`${API_ROOT}/nominees`, {
+        return fetch(`${BACKEND_API_ROOT}/nominees`, {
             credentials: "include",
             method: "POST",
             headers: {
@@ -72,10 +79,10 @@ export const createNominee = (movie, user) => {
         })
             .then(resp => resp.json())
             .then(data => {
-                console.log(data)
                 if (data.error) {
                     alert(data.error)
                 } else {
+                    // add to store
                     dispatch(addNominee(movie))
                 }
             })
@@ -83,9 +90,10 @@ export const createNominee = (movie, user) => {
     }
 }
 
+// remove nominee from backend user data
 export const deleteNominee = (imdbID) => {
     return dispatch => {
-        return fetch(`${API_ROOT}/nominees`, {
+        return fetch(`${BACKEND_API_ROOT}/nominees`, {
             credentials: "include",
             method: "DELETE",
             headers: {
@@ -97,10 +105,10 @@ export const deleteNominee = (imdbID) => {
         })
             .then(resp => resp.json())
             .then(data => {
-                console.log(data)
                 if (data.error) {
                     alert(data.error)
                 } else {
+                    // remove from store
                     dispatch(removeNominee(imdbID))
                 }
             })

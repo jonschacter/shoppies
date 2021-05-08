@@ -1,6 +1,8 @@
+// libraries
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+// actions
 import { signup, login } from '../../actions/user.js'
 
 class UserForm extends Component {
@@ -12,21 +14,23 @@ class UserForm extends Component {
         }
     }
 
+    // controlled form logic
     handleChange = ({ target: { name, value } }) => {
         this.setState({
             [name]: value
         })
     }
 
+    // props.type (sourced from Route) will determine whether form acts as a log in or sign up form
     handleSubmit = e => {
         e.preventDefault()
-        
-        if (this.props.type === "Log In") {
-            console.log("logging in")
-            this.props.login(this.state, this.props.history)
+
+        const { type, login, signup, history } = this.props
+
+        if (type === "Log In") {
+            login(this.state, history)
         } else {
-            console.log("signing up")
-            this.props.signup(this.state, this.props.history)
+            signup(this.state, history)
         }
     }
 

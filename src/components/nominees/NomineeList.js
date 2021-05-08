@@ -1,4 +1,7 @@
+// libraries
 import React from 'react';
+
+// components
 import NomineeCard from './NomineeCard.js'
 
 function NomineeList({ movies }) {

@@ -1,4 +1,4 @@
-import API_ROOT from '../apiRoot.js'
+import { BACKEND_API_ROOT } from '../apiRoot.js'
 
 import { getNominees, clearNominees } from './nominees.js'
 
@@ -17,7 +17,7 @@ export const clearCurrentUser = () => {
 
 export const signup = (userInfo, history) => {
     return dispatch => {
-        return fetch(`${API_ROOT}/signup`, {
+        return fetch(`${BACKEND_API_ROOT}/signup`, {
             credentials: "include",
             method: "POST",
             headers: {
@@ -29,10 +29,10 @@ export const signup = (userInfo, history) => {
         })
             .then(resp => resp.json())
             .then(data => {
-                console.log(data)
                 if (data.error) {
                     alert(data.error)
                 } else {
+                    // set user in store => reset nominees => redirect to home
                     dispatch(setCurrentUser(data))
                     dispatch(clearNominees())
                     history.push("/")
@@ -44,7 +44,7 @@ export const signup = (userInfo, history) => {
 
 export const login = (userInfo, history) => {
     return dispatch => {
-        return fetch(`${API_ROOT}/login`, {
+        return fetch(`${BACKEND_API_ROOT}/login`, {
             credentials: "include",
             method: "POST",
             headers: {
@@ -57,6 +57,7 @@ export const login = (userInfo, history) => {
                 if (data.error) {
                     alert(data.error)
                 } else {
+                    // add user to store => reset nominees => get existing nominees from backend => redirect home
                     dispatch(setCurrentUser(data))
                     dispatch(clearNominees())
                     dispatch(getNominees())
@@ -70,11 +71,12 @@ export const login = (userInfo, history) => {
 export const logout = (history) => {
     return dispatch => {
         dispatch(clearCurrentUser())
-        return fetch(`${API_ROOT}/logout`, {
+        return fetch(`${BACKEND_API_ROOT}/logout`, {
             credentials: "include",
             method: "DELETE"
         })
             .then(() => {
+                // reset nominees => redirect home
                 dispatch(clearNominees())
                 history.push("/")
             })
@@ -84,7 +86,7 @@ export const logout = (history) => {
 
 export const getCurrentUser = () => {
     return dispatch => {
-        return fetch(`${API_ROOT}/current_user`, {
+        return fetch(`${BACKEND_API_ROOT}/current_user`, {
             credentials: "include",
             method: "GET",
             headers: {
@@ -94,6 +96,7 @@ export const getCurrentUser = () => {
             .then(resp => resp.json())
             .then(data => {
                 if (!data.error) {
+                    // add user to store => reset nominees => get existing nominees from backend
                     dispatch(setCurrentUser(data))
                     dispatch(clearNominees())
                     dispatch(getNominees())

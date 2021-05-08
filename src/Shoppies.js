@@ -1,9 +1,13 @@
+// libraries
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+// actions
 import { getMovies } from './actions/movies.js'
-import MovieList from './components/movies/MovieList'
-import NomineeList from './components/nominees/NomineeList'
+
+// components
+import MovieList from './components/movies/MovieList.js'
+import NomineeList from './components/nominees/NomineeList.js'
 
 class Shoppies extends Component {
     constructor(props) {
@@ -16,6 +20,7 @@ class Shoppies extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         
+        // re-fetch on submission to help prevent bugs
         this.props.getMovies(this.state.query)
     }
 
@@ -28,41 +33,6 @@ class Shoppies extends Component {
 
         this.props.getMovies(query)
     }
-
-    // addNominate = (movie) => {
-    //     this.setState(prevState => {
-    //         const newNominations = [...prevState.nominations, movie]
-    //         return {
-    //             nominations: newNominations
-    //         }
-    //     })
-    // }
-
-    // removeNominate = (movie) => {
-    //     this.setState(prevState => {
-    //         const index = prevState.nominations.findIndex(nom => nom.imdbID === movie.imdbID)
-    //         const newNominations = [...prevState.nominations.slice(0, index), ...prevState.nominations.slice(index+1)]
-    //         return {
-    //             nominations: newNominations
-    //         }
-    //     })
-    // }
-
-    // getMovies = (query) => {
-    //     fetch(`http://omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${query}`)
-    //         .then(resp => resp.json())
-    //         .then(data => {
-    //             if (data.Response === "True") {
-    //                 this.setState({
-    //                     movies: data.Search
-    //                 })
-    //             } else {
-    //                 this.setState({
-    //                     movies: []
-    //                 })
-    //             }
-    //         })
-    // }
 
     render() {
         const { movies, nominees } = this.props
