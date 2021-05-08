@@ -38,7 +38,8 @@ class Shoppies extends Component {
         const { movies, nominees } = this.props
 
         return (
-            <div className="shoppies">
+            <div className="App">
+                <h1>The Shoppies</h1>
                 { nominees.length === 5 ? <div className="banner"><h3>Thank You for Contributing Your Nominations!!</h3></div> : null}
                 <div className="movie-search-form">
                     <form onSubmit={this.handleSubmit} >

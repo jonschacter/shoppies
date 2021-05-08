@@ -1,6 +1,3 @@
-// base url
-import { OMDB_API_ROOT } from '../apiRoot.js'
-
 export const setMovies = movies => {
     return {
         type: "SET_MOVIES",
@@ -10,7 +7,7 @@ export const setMovies = movies => {
 
 export const getMovies = (query) => {
     return dispatch => {
-        fetch(`${OMDB_API_ROOT}&s=${query}`)
+        fetch(`https://omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${query}`)
             .then(resp => resp.json())
             .then(data => {
                 if (data.Response === "True") {

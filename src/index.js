@@ -8,12 +8,12 @@ import store from './store.js'
 import './index.css';
 
 // components
-import App from './App.js';
+import Shoppies from './Shoppies.js';
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Shoppies />
   </Provider>,
   document.getElementById('root')
 );

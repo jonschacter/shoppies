@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 // actions
-import { addNominee, createNominee } from '../../actions/nominees.js'
+import { addNominee } from '../../actions/nominees.js'
 
 class MovieCard extends Component {  
     renderButton = () => {
@@ -27,15 +27,9 @@ class MovieCard extends Component {
     }
 
     handleClick = () => {
-        const { movie, addNominee, createNominee, user } = this.props
+        const { movie, addNominee } = this.props
 
-        // addNominee only interacts with store for when a user is NOT logged in
-        // createNominee will communicate with backend first
-        if (user) {
-            createNominee(movie, user)
-        } else {
-            addNominee(movie)
-        }
+        addNominee(movie)
     }
     
     render() {
@@ -49,11 +43,10 @@ class MovieCard extends Component {
     }
 }
 
-const mapStateToProps = ({ nominees, user }) => {
+const mapStateToProps = ({ nominees }) => {
     return {
-        nominees,
-        user
+        nominees
     }
 }
 
-export default connect(mapStateToProps, { addNominee, createNominee })(MovieCard);
+export default connect(mapStateToProps, { addNominee })(MovieCard);

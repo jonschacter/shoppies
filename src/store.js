@@ -5,12 +5,10 @@ import thunk from 'redux-thunk'
 // reducers
 import movies from './reducers/movies.js'
 import nominees from './reducers/nominees.js'
-import user from './reducers/user.js'
 
 const reducer = combineReducers({
     movies,
-    nominees,
-    user
+    nominees
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
